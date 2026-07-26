@@ -17,18 +17,6 @@ https://airbnb-clone-backend-8f5q.onrender.com/docs
 
 ---
 
-# 📸 Screenshots
-
-> Add screenshots of the following pages:
-
-- Home Page
-- Listing Detail Page
-- Checkout Page
-- My Trips
-- Host Dashboard
-
----
-
 # ✨ Features
 
 ## 🏠 Home & Search
