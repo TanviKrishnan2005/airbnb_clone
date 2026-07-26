@@ -30,7 +30,7 @@ export default function HostPage() {
   const [editingId, setEditingId] = useState<number | null>(null);
 
   async function loadListings() {
-    const res = await fetch("http://127.0.0.1:8000/listings");
+    const res = await fetch("https://airbnb-clone-backend-8f5q.onrender.com/listings");
     const data = await res.json();
     setListings(data);
   }
@@ -38,7 +38,7 @@ export default function HostPage() {
   useEffect(() => {
     loadListings();
 
-    fetch("http://127.0.0.1:8000/bookings")
+    fetch("https://airbnb-clone-backend-8f5q.onrender.com/bookings")
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, []);
@@ -61,11 +61,11 @@ export default function HostPage() {
       host_id: 1,
     };
 
-    let url = "http://127.0.0.1:8000/listings";
+    let url = "https://airbnb-clone-backend-8f5q.onrender.com/listings";
     let method = "POST";
 
     if (editingId !== null) {
-      url = `http://127.0.0.1:8000/listings/${editingId}`;
+      url = `https://airbnb-clone-backend-8f5q.onrender.com/listings/${editingId}`;
       method = "PUT";
     }
 
@@ -95,7 +95,7 @@ export default function HostPage() {
 
   async function deleteListing(id: number) {
     const res = await fetch(
-      `http://127.0.0.1:8000/listings/${id}`,
+      `https://airbnb-clone-backend-8f5q.onrender.com/listings/${id}`,
       {
         method: "DELETE",
       }

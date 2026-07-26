@@ -28,7 +28,7 @@ export default function Home() {
 
   // Fetch Listings
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/listings")
+    fetch("https://airbnb-clone-backend-8f5q.onrender.com/listings")
       .then((res) => res.json())
       .then((data) => {
         setListings(data);

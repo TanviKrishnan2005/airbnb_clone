@@ -27,7 +27,7 @@ export default function MyTrips() {
 
   useEffect(() => {
     async function loadTrips() {
-      const bookingRes = await fetch("http://127.0.0.1:8000/bookings");
+      const bookingRes = await fetch("https://airbnb-clone-backend-8f5q.onrender.com/bookings");
       const bookingData = await bookingRes.json();
 
       setBookings(bookingData);
@@ -37,7 +37,7 @@ export default function MyTrips() {
       for (const booking of bookingData) {
         if (!listings[booking.listing_id]) {
           const res = await fetch(
-            `http://127.0.0.1:8000/listings/${booking.listing_id}`
+            `https://airbnb-clone-backend-8f5q.onrender.com/listings/${booking.listing_id}`
           );
 
           const listing = await res.json();

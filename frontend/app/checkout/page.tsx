@@ -27,7 +27,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     if (!listingId) return;
 
-    fetch(`http://127.0.0.1:8000/listings/${listingId}`)
+    fetch(`https://airbnb-clone-backend-8f5q.onrender.com/listings/${listingId}`)
       .then((res) => res.json())
       .then((data) => setListing(data));
   }, [listingId]);
@@ -44,7 +44,7 @@ export default function CheckoutPage() {
       total_price: Number(total),
     };
 
-    const response = await fetch("http://127.0.0.1:8000/bookings", {
+    const response = await fetch("https://airbnb-clone-backend-8f5q.onrender.com/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
