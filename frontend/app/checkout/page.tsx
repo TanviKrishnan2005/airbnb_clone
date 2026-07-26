@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -12,7 +12,7 @@ type Listing = {
   image: string;
 };
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -27,7 +27,9 @@ export default function CheckoutPage() {
   useEffect(() => {
     if (!listingId) return;
 
-    fetch(`https://airbnb-clone-backend-8f5q.onrender.com/listings/${listingId}`)
+    fetch(
+      `https://airbnb-clone-backend-8f5q.onrender.com/listings/${listingId}`
+    )
       .then((res) => res.json())
       .then((data) => setListing(data));
   }, [listingId]);
@@ -44,13 +46,16 @@ export default function CheckoutPage() {
       total_price: Number(total),
     };
 
-    const response = await fetch("https://airbnb-clone-backend-8f5q.onrender.com/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(booking),
-    });
+    const response = await fetch(
+      "https://airbnb-clone-backend-8f5q.onrender.com/bookings",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(booking),
+      }
+    );
 
     if (response.ok) {
       toast.success("Booking Confirmed!");
@@ -67,14 +72,15 @@ export default function CheckoutPage() {
   if (!listing) {
     return (
       <main className="min-h-screen flex items-center justify-center">
-        <h2 className="text-2xl font-semibold">Loading...</h2>
+        <h2 className="text-2xl font-semibold">
+          Loading...
+        </h2>
       </main>
     );
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-
       <div className="max-w-4xl mx-auto py-12 px-6">
 
         <h1 className="text-4xl font-bold mb-10">
@@ -139,7 +145,22 @@ export default function CheckoutPage() {
         </div>
 
       </div>
-
     </main>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen flex items-center justify-center">
+          <h2 className="text-2xl font-semibold">
+            Loading...
+          </h2>
+        </main>
+      }
+    >
+      <CheckoutContent />
+    </Suspense>
   );
 }
