@@ -26,7 +26,7 @@ export default function WishlistPage() {
 
       for (const id of ids) {
         const res = await fetch(
-          `http://127.0.0.1:8000/listings/${id}`
+          `https://airbnb-clone-backend-8f5q.onrender.com/listings/${id}`
         );
 
         if (res.ok) {
